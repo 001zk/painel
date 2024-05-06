@@ -1,0 +1,90 @@
+body {
+    background-color: #191919; /* Fundo preto escuro */
+    color: #D3D3D3; /* Texto cinza claro */
+    font-family: 'Arial', sans-serif; /* Fonte padrão */
+}
+
+.login-container {
+    width: 300px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: #2C2C2C; /* Fundo cinza escuro */
+    border: 2px solid #8A2BE2; /* Borda roxa escura */
+    border-radius: 10px;
+    box-shadow: 0 0 10px #8A2BE2; /* Sombra roxa escura */
+    transition: all 0.3s ease; /* Transição suave */
+}
+
+.panel-name {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 20px;
+    font-family: 'Arial Black', sans-serif; /* Fonte mais bold */
+    color: #8A2BE2; /* Roxo escuro */
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="email"],
+input[type="password"],
+button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #363636; /* Fundo cinza mais escuro */
+    color: #D3D3D3; /* Texto cinza claro */
+    border: 2px solid #8A2BE2; /* Borda roxa escura */
+    border-radius: 5px;
+    transition: all 0.3s ease; /* Transição suave */
+}
+
+input[type="email"]:hover,
+input[type="password"]:hover,
+button:hover {
+    background-color: #8A2BE2; /* Roxo escuro */
+    color: #191919; /* Texto preto escuro */
+}
+
+button {
+    cursor: pointer;
+    font-family: 'Arial Black', sans-serif; /* Fonte mais bold */
+}
+
+::-webkit-input-placeholder {
+    color: #D3D3D3; /* Texto cinza claro */
+}
+
+:-moz-placeholder {
+    color: #D3D3D3; /* Texto cinza claro */
+    opacity: 1;
+}
+
+::-moz-placeholder {
+    color: #D3D3D3; /* Texto cinza claro */
+    opacity: 1;
+}
+
+:-ms-input-placeholder {
+    color: #D3D3D3; /* Texto cinza claro */
+}
+
+.login-container:hover,
+input[type="email"]:hover,
+input[type="password"]:hover,
+button:hover {
+    transform: translateY(-5px);
+}
+
+/* Efeitos adicionais */
+
+.login-container {
+    background-image: url('matrix.gif'); /* Fundo animado */
+    background-size: cover;
+}
