@@ -4,30 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel de Administração</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #191919; /* Fundo preto escuro */
+            color: #D3D3D3; /* Texto cinza claro */
+            font-family: 'Arial', sans-serif; /* Fonte padrão */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            width: 300px;
+            padding: 20px;
+            background-color: #2C2C2C; /* Fundo cinza escuro */
+            border: 2px solid #8A2BE2; /* Borda roxa escura */
+            border-radius: 10px;
+            box-shadow: 0 0 10px #8A2BE2; /* Sombra roxa escura */
+            text-align: center;
+        }
+
+        .panel-name {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #8A2BE2; /* Roxo escuro */
+        }
+
+        button {
+            background-color: #363636; /* Fundo cinza mais escuro */
+            color: #D3D3D3; /* Texto cinza claro */
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #8A2BE2; /* Roxo escuro */
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Painel de Administração</h1>
-    </div>
-
-    <!-- Caixa de diálogo para adicionar novo usuário -->
-    <div id="add-user-modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Adicionar Novo Usuário</h2>
-            <form id="add-user-form">
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" placeholder="Digite o email" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Senha:</label>
-                    <input type="password" id="password" name="password" placeholder="Digite a senha" required>
-                </div>
-                <button type="submit">Adicionar</button>
-            </form>
-        </div>
+    <div class="login-container">
+        <h2 class="panel-name">Painel de Administração</h2>
+        <button id="add-user-btn">Adicionar Usuário</button>
     </div>
 
     <script src="painel-adm.js"></script>
