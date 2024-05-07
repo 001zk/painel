@@ -1,41 +1,43 @@
-const http = require('http');
+const express = require('express');
+const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
 
+const app = express();
 const PORT = 3000;
 
-// Cria o servidor HTTP
-const server = http.createServer((req, res) => {
-    // Rota para a página do painel de administração
-    if (req.url === '/painel-adm') {
-        // Lê o arquivo HTML do painel de administração
-        fs.readFile(path.join(__dirname, 'painel-adm.html'), (err, data) => {
-            if (err) {
-                res.writeHead(500, { 'Content-Type': 'text/plain' });
-                res.end('Erro interno do servidor');
-            } else {
-                res.writeHead(200, { 'Content-Type': 'text/html' });
-                res.end(data);
-            }
-        });
-    } else if (req.url === '/painel-adm.js' || req.url === '/style.css') {
-        // Rota para servir os arquivos JavaScript e CSS
-        fs.readFile(path.join(__dirname, req.url), (err, data) => {
-            if (err) {
-                res.writeHead(404, { 'Content-Type': 'text/plain' });
-                res.end('Arquivo não encontrado');
-            } else {
-                res.writeHead(200, { 'Content-Type': 'text/html' });
-                res.end(data);
-            }
-        });
-    } else {
-        res.writeHead(404, { 'Content-Type': 'text/plain' });
-        res.end('Página não encontrada');
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Rota para lidar com a requisição de adição de usuário
+app.post('/add-user', (req, res) => {
+    const { email, password } = req.body;
+
+    // Ler os usuários existentes do arquivo JSON
+    let users = [];
+    try {
+        const usersData = fs.readFileSync('users.json');
+        users = JSON.parse(usersData);
+    } catch (error) {
+        console.error('Erro ao ler o arquivo de usuários:', error);
     }
+
+    // Adicionar o novo usuário à lista de usuários
+    users.push({ email, password });
+
+    // Salvar a lista atualizada de usuários de volta no arquivo JSON
+    fs.writeFile('users.json', JSON.stringify(users), (err) => {
+        if (err) {
+            console.error('Erro ao salvar o novo usuário:', err);
+            res.status(500).send('Usuário não adicionado');
+        } else {
+            console.log('Novo usuário adicionado:', { email, password });
+            res.status(200).send('Usuário adicionado');
+        }
+    });
 });
 
-// Inicia o servidor na porta especificada
-server.listen(PORT, () => {
+app.listen(PORT, () => {
     console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
+
