@@ -1,28 +1,27 @@
 document.getElementById("add-user-btn").addEventListener("click", function() {
-    var newUserEmail = prompt("Digite o email do novo usuário:");
-    var newUserPassword = prompt("Digite a senha do novo usuário:");
-    
-    // Aqui você pode enviar os novos dados de login para o servidor
-    // e salvar como um novo usuário comum
-    
-    // Exemplo de como enviar dados para o servidor (usando fetch API)
-    fetch("/add-user", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ email: newUserEmail, password: newUserPassword })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert("Novo usuário adicionado com sucesso!");
-        } else {
-            alert("Erro ao adicionar novo usuário. Por favor, tente novamente.");
-        }
-    })
-    .catch(error => {
-        console.error("Erro:", error);
-        alert("Ocorreu um erro. Por favor, tente novamente.");
-    });
+    var modal = document.getElementById("add-user-modal");
+    modal.style.display = "block";
 });
+
+document.getElementsByClassName("close")[0].addEventListener("click", function() {
+    var modal = document.getElementById("add-user-modal");
+    modal.style.display = "none";
+});
+
+window.onclick = function(event) {
+    var modal = document.getElementById("add-user-modal");
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+document.getElementById("add-user-form").addEventListener("submit", function(event) {
+    event.preventDefault();
+    var email = document.getElementById("new-email").value;
+    var password = document.getElementById("new-password").value;
+    // Aqui você pode enviar os dados para o servidor para adicionar o novo usuário
+    alert("Novo usuário adicionado:\nEmail: " + email + "\nSenha: " + password);
+    // Aqui você pode adicionar lógica para enviar os dados para o servidor
+    // e tratar a resposta do servidor
+});
+
